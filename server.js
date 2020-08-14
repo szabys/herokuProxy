@@ -47,7 +47,7 @@ app.all('*', function (req, res, next) {
     }
 });
 
-app.set('port', 3128);
+app.set('port', process.env.PORT || 3000);
 
 app.listen(app.get('port'), '10.111.34.172', function () {
     console.log('Proxy server listening on port ' + app.get('port'));
