@@ -24,9 +24,11 @@ app.all('*', function (req, res, next) {
         var url = req.url.substr(1);
         var requestVar = {
             url: url,
-            method: req.method,
-            json: req.body
+            method: req.method
         };
+        if(req.body){
+            requestVar.json = req.body;
+        }
         if (req.header('Authorization')) {
             requestVar.headers = {
                 'Authorization': req.header('Authorization'),
