@@ -24,20 +24,19 @@ app.all('*', function (req, res, next) {
         var url = req.url.substr(1);
         var requestVar = {
             url: url,
-            method: req.method
+            method: req.method,
+            headers: {
+                'Content-Type': 'application/json'
+            }
         };
         if(req.body){
             requestVar.json = req.body;
         }
         if (req.header('Authorization')) {
-            requestVar.headers = {
-                'Authorization': req.header('Authorization'),
-                'Content-Type': 'application/json'
-            }
-        } else {
-            requestVar.headers = {
-                'Content-Type': 'application/json'
-            }
+            requestVar.headers['Authorization'] = req.header('Authorization');
+        }
+        if(req.header('X-LC-Tenant')){
+            requestVar.headers['X-LC-Tenant'] = req.header('X-LC-Tenant');
         }
         request(requestVar,
             function (error, response, body) {
