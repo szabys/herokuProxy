@@ -40,7 +40,7 @@ app.all('*', function (req, res, next) {
         }
         request(requestVar,
             function (error, response, body) {
-                if (error) {
+                if (error && response) {
                     console.error('error: ' + response.statusCode)
                 }
                 //                console.log(body);
