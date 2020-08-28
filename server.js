@@ -25,7 +25,6 @@ app.all('*', function (req, res, next) {
         var requestVar = {
             url: url,
             method: req.method,
-            timeout: 0,
             headers: {
                 'Content-Type': 'application/json'
             }
